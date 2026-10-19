@@ -1,3 +1,58 @@
+# Web Asset Probing & Vulnerability Inspection Platform
+
+[![Vue3](https://img.shields.io/badge/frontend-Vue%203-42b883)](https://vuejs.org/)
+[![Flask](https://img.shields.io/badge/backend-Flask-000000)](https://flask.palletsprojects.com/)
+[![SQLite](https://img.shields.io/badge/db-SQLite-0f80c1)](https://www.sqlite.org/)
+[![Docker](https://img.shields.io/badge/deploy-Docker%20Compose-2496ed)](https://docs.docker.com/compose/)
+[![License](https://img.shields.io/badge/license-MIT-blue)](#license)
+
+> A full-stack, education-focused web asset probing & vulnerability inspection demo.
+> Built with **Vue 3 + Element Plus + Flask + SQLAlchemy + SQLite + ECharts**, with an optional **AI assistant** that explains findings and suggests remediation steps.
+
+> ⚠️ **For authorized lab use only.** This tool is designed for students and CTF/skill-contest demos against local targets such as DVWA, WebGoat, or `127.0.0.1`. **Never scan hosts you do not own or have explicit written permission to test.** Unauthorized scanning may violate the Computer Fraud and Abuse Act, the PRC Cybersecurity Law, and other local regulations. The author assumes no liability for misuse.
+
+## Features
+
+- 🔐 User registration / login with **JWT** (passwords hashed via Werkzeug)
+- 🗂️ Asset inventory (IP / domain / URL)
+- ⚡ Async scan tasks with real-time progress polling
+- 🌐 Port probing (nmap when available, falls back to raw socket probing)
+- 🐛 Basic web vuln detection: reflected XSS & SQLi error-based signatures
+- 📊 ECharts dashboard: vuln severity pie chart, task progress
+- 📄 Export a Chinese/English-friendly **PDF inspection report**
+- 🤖 **AI assistant** (OpenAI-compatible: DeepSeek / Qwen / GLM / Ollama) — explains findings, suggests remediation, suggests next learning steps. Gracefully falls back to local rules when no API key is configured.
+- 🐳 One-command startup via `docker compose up -d --build`
+
+## Quick Start
+
+```bash
+# Backend
+cd backend
+pip install -r requirements.txt
+python app.py            # http://127.0.0.1:5000
+
+# Frontend (new terminal)
+cd frontend
+npm install
+npm run dev              # http://127.0.0.1:5173
+
+# Or one-shot with Docker:
+docker compose up -d --build   # frontend http://127.0.0.1:8080
+```
+
+## Tech Stack
+
+| Layer | Tech |
+| --- | --- |
+| Frontend | Vue 3 + Vite + Element Plus + ECharts + Axios |
+| Backend | Python Flask + Flask-JWT-Extended + SQLAlchemy |
+| Database | SQLite (zero-config) |
+| Scanner | python-nmap (optional) + requests |
+| Report | reportlab (built-in CID Chinese font) |
+| AI | OpenAI-compatible Chat Completions API |
+
+---
+
 # Web 资产探测与漏洞巡检平台
 
 > 前后端分离的 Web 资产探测与漏洞巡检演示平台，用于**网络安全教学 / 课程作业 / 技能竞赛**。
